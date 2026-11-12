@@ -1,67 +1,38 @@
-import { Ionicons } from "@expo/vector-icons";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import TarjetaExperiencia from "../components/TarjetaExperiencia";
+import { StyleSheet, Text, View } from "react-native";
 
-const experiencias = [
-  {
-    cargo: "Aprendiz ADSO",
-    empresa: "SENA - Etapa productiva",
-    periodo: "2026 - Actualidad",
-    descripcion: "Desarrollo de aplicaciones móviles con React Native y Expo.",
-  },
-  {
-    cargo: "Auxiliar de peluqueria",
-    empresa: "Sandra Sierra",
-    periodo: "2025",
-    descripcion: "Alisado de cabello, lavado, aseo general y atención al cliente.",
-  },
-  {
-    cargo: "Atención al cliente",
-    empresa: "Panadería",
-    periodo: "2026",
-    descripcion: "Atención al cliente, venta de productos y aseo general del local.",
-  },
-];
+type Props = {
+  cargo: string;
+  empresa: string;
+  periodo: string;
+  descripcion: string;
+};
 
-const Experiencia = () => {
+const TarjetaExperiencia = ({ cargo, empresa, periodo, descripcion }: Props) => {
   return (
-    <ScrollView
-      style={estilos.contenedor}
-      contentContainerStyle={estilos.contenido}
-    >
-      <View style={estilos.encabezado}>
-        <Ionicons name="briefcase" size={80} color="#2563eb" />
-        <Text style={estilos.nombre}>Vanessa Ospitia</Text>
-        <Text style={estilos.subtitulo}>Experiencia Laboral</Text>
-      </View>
-
-      <View style={estilos.seccion}>
-        {experiencias.map((exp) => (
-          <TarjetaExperiencia
-            key={exp.cargo}
-            cargo={exp.cargo}
-            empresa={exp.empresa}
-            periodo={exp.periodo}
-            descripcion={exp.descripcion}
-          />
-        ))}
-      </View>
-    </ScrollView>
+    <View style={estilos.tarjeta}>
+      <Text style={estilos.cargo}>{cargo}</Text>
+      <Text style={estilos.empresa}>{empresa}</Text>
+      <Text style={estilos.periodo}>{periodo}</Text>
+      <Text style={estilos.descripcion}>{descripcion}</Text>
+    </View>
   );
 };
 
-export default Experiencia;
+export default TarjetaExperiencia;
 
 const estilos = StyleSheet.create({
-  contenedor: { flex: 1, backgroundColor: "#f8fafc" },
-  contenido: { padding: 20 },
-  encabezado: { alignItems: "center", marginBottom: 20 },
-  nombre: { fontSize: 24, fontWeight: "bold", color: "#0f172a", marginTop: 8 },
-  subtitulo: { fontSize: 16, color: "#2563eb", fontWeight: "600" },
-  seccion: {
-    backgroundColor: "#fff",
+  tarjeta: {
+    backgroundColor: "#ffffff",
     padding: 16,
-    borderRadius: 12,
-    elevation: 1,
+    borderRadius: 10,
+    marginVertical: 8,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderLeftWidth: 5,
+    borderLeftColor: "#2563eb",
   },
+  cargo: { fontSize: 16, fontWeight: "bold", color: "#0f172a" },
+  empresa: { fontSize: 14, color: "#2563eb", fontWeight: "600" },
+  periodo: { fontSize: 12, color: "#888", marginVertical: 2 },
+  descripcion: { fontSize: 14, color: "#475569", lineHeight: 20 },
 });
